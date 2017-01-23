@@ -34,7 +34,7 @@ foreach ($dumpIterator as $jsonLine) {
         }
     }
     $id = $page->getPageIdentifier()->getId();
-    echo '{"index":{"_type":"page","_id":' . $id . '"}}';
+    echo '{"index":{"_type":"page","_id":' . $id . '}}';
     echo "\n";
     echo json_encode($record);
     echo "\n";
