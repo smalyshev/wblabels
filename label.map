@@ -1,0 +1,58 @@
+{
+  "labels_all": {
+    "type": "string",
+    "fields": {
+      "prefix": {
+        "type": "string",
+        "index_options": "docs",
+        "analyzer": "prefix_asciifolding",
+        "norms": {
+          "enabled": false
+        }
+      },
+      "near_match": {
+        "type": "string",
+        "index_options": "docs",
+        "analyzer": "near_match_asciifolding",
+        "norms": {
+          "enabled": false
+        }
+      }
+    }
+  },
+  "labels": {
+    "type": "object",
+    "properties": {
+      "en": {
+        "type": "string",
+        "fields": {
+          "prefix": {
+            "type": "string",
+            "index_options": "docs",
+            "analyzer": "prefix_asciifolding",
+            "norms": {
+              "enabled": false
+            }
+          },
+          "near_match_folded": {
+            "type": "string",
+            "index_options": "docs",
+            "analyzer": "near_match_asciifolding",
+            "norms": {
+              "enabled": false
+            }
+          },
+          "near_match": {
+            "type": "string",
+            "index_options": "docs",
+            "analyzer": "near_match",
+            "norms": {
+              "enabled": false
+            }
+          }
+        },
+        "copy_to": "labels_all"
+      }
+    }
+  }
+}

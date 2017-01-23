@@ -1,0 +1,6 @@
+{
+    "require": {
+        "jeroen/json-dump-reader": "~1.0",
+        "addwiki/mediawiki-api": "~0.5.0"
+    }
+}
