@@ -6,7 +6,7 @@ use Wikibase\JsonDumpReader\JsonDumpFactory;
 
 $factory = new JsonDumpFactory();
 
-$dumpReader = $factory->newGzDumpReader($argv[1]);
+$dumpReader = $factory->newExtractedDumpReader("php://stdin");
 $dumpIterator = $factory->newStringDumpIterator($dumpReader);
 $api = new \Mediawiki\Api\MediawikiApi('https://www.wikidata.org/w/api.php');
 $services = new \Mediawiki\Api\MediawikiFactory($api);
@@ -34,7 +34,8 @@ foreach ($dumpIterator as $jsonLine) {
         }
     }
     $id = $page->getPageIdentifier()->getId();
-    echo '{"index":{"_type":"page","_id":' . $id . '"}}\n';
+    echo '{"index":{"_type":"page","_id":' . $id . '"}}';
+    echo "\n";
     echo json_encode($record);
-    echo ",\n";
+    echo "\n";
 }
