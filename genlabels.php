@@ -23,13 +23,13 @@ foreach ($dumpIterator as $jsonLine) {
         }
         // Label always goes first, even if none given
         if (!empty($data['labels'][$lang])) {
-            $record['label'][$lang] = [$data['labels'][$lang]['value']];
+            $record['labels'][$lang] = [$data['labels'][$lang]['value']];
         } else {
-            $record['label'][$lang] = [""];
+            $record['labels'][$lang] = [""];
         }
         if (!empty($data['aliases'][$lang])) {
             foreach ($data['aliases'][$lang] as $alias) {
-                $record['label'][$lang][] = $alias['value'];
+                $record['labels'][$lang][] = $alias['value'];
             }
         }
     }
