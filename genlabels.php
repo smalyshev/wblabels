@@ -14,7 +14,7 @@ $services = new \Mediawiki\Api\MediawikiFactory($api);
 foreach ($dumpIterator as $jsonLine) {
     $data = json_decode($jsonLine, true);
     $page = $services->newPageGetter()->getFromTitle($data['id']);
-    $record = ["title" => $data['id'], 'wiki' => 'wikidatawiki', 'namespace' => 0 ];
+    $record = ["title" => $data['id'], 'wiki' => 'wikidatawiki', 'namespace' => 0, 'content_model' => 'wikibase-' . $data['type']];
 
     foreach (\MediaWiki\Languages\Data\Names::$names as $lang => $name) {
         if (empty($data['labels'][$lang]) && empty($data['aliases'][$lang])) {
@@ -33,6 +33,10 @@ foreach ($dumpIterator as $jsonLine) {
             }
         }
     }
+
+    $record['label_count'] = count($data['labels']);
+    $record['sitelink_count'] = count($data['sitelinks']);
+
     $id = $page->getPageIdentifier()->getId();
     echo '{"index":{"_type":"page","_id":' . $id . '}}';
     echo "\n";
